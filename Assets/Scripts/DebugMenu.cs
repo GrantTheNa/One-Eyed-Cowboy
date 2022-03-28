@@ -46,8 +46,8 @@ public class DebugMenu : MonoBehaviour
         if (menuActive == true)
         {
             xSpeedText.text = "xSpeed: " + xSpeed.ToString("F2");
-            ySpeedText.text = "xSpeed: " + ySpeed.ToString("F2");
-            zSpeedText.text = "xSpeed: " + zSpeed.ToString("F2");
+            ySpeedText.text = "ySpeed: " + ySpeed.ToString("F2");
+            zSpeedText.text = "zSpeed: " + zSpeed.ToString("F2");
             isGroundedText.text = "isGrounded: " + isGrounded;
         }
     }

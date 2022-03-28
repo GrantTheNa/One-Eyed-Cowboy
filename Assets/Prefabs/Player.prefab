@@ -292,16 +292,15 @@ MonoBehaviour:
   playerFeet: {fileID: 7764783461190898794}
   debugMenu: {fileID: 0}
   playerCamera: {fileID: 7764783461477861961}
+  animator: {fileID: 7574475326526620083}
   movementSpeed: 10
+  crouchSpeedMultiplier: 0.4
   mouseSensitivity: 2
   jumpHeight: 2
   fallSpeed: 5
   xSpeed: 0
   ySpeed: 0
   zSpeed: 0
-  mouseX: 0
-  mouseY: 0
-  stepOffset: 0
 --- !u!1 &7764783461477861960
 GameObject:
   m_ObjectHideFlags: 0
