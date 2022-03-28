@@ -17,7 +17,7 @@ public class FirstPersonController : MonoBehaviour
     public float fallSpeed = 5;
 
     // Private Variables
-    private float xSpeed, ySpeed, zSpeed, mouseX, mouseY, stepOffset;
+    public float xSpeed, ySpeed, zSpeed, mouseX, mouseY, stepOffset;
     private bool isGrounded;
 
     // Start is called before the first frame update
