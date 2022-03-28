@@ -2228,6 +2228,7 @@ MonoBehaviour:
   playerScript: {fileID: 1507388106}
   acceleration: 0.1
   deceleration: 0.5
+  pressedCrouch: 0
 --- !u!43 &1615691978
 Mesh:
   m_ObjectHideFlags: 0
@@ -3193,6 +3194,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2864450087921958482, guid: 894ae741ad14f164a9199ad8aecac77f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.29999995
+      objectReference: {fileID: 0}
     - target: {fileID: 7764783461464444709, guid: 894ae741ad14f164a9199ad8aecac77f, type: 3}
       propertyPath: m_RootOrder
       value: 2
