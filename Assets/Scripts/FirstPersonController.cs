@@ -9,16 +9,21 @@ public class FirstPersonController : MonoBehaviour
     public FeetCollider playerFeet;
     public DebugMenu debugMenu;
     public Camera playerCamera;
+    public GameObject animator;
 
     // Variables that need adjusting
     public float movementSpeed = 10;
+    public float crouchSpeedMultiplier = 0.4f;
     public float mouseSensitivity = 2;
     public float jumpHeight = 2;
     public float fallSpeed = 5;
 
+    // Variables that need accessing
+    public float xSpeed, ySpeed, zSpeed;
+
     // Private Variables
-    public float xSpeed, ySpeed, zSpeed, mouseX, mouseY, stepOffset;
-    private bool isGrounded;
+    private float mouseX, mouseY, stepOffset, speedMultiplier;
+    private bool isGrounded, pressedCrouch;
 
     // Start is called before the first frame update
     void Start()
@@ -29,11 +34,26 @@ public class FirstPersonController : MonoBehaviour
 
         // Sets the step off set to what it is set in Unity
         stepOffset = playerCharacterController.stepOffset;
+
+        // Sets the speed multiplier to be regular at 1
+        speedMultiplier = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Checks is ctrl is held
+        if (Input.GetAxisRaw("Fire1") != 0)
+        {
+            Crouch();
+        }
+        // Checks if player is already crouched
+        else if (pressedCrouch == true)
+        {
+            pressedCrouch = false;
+            Stand();
+        }
+
         FirstPersonCamera();
         HorizontalMovement();
         VerticalMovement();
@@ -68,6 +88,9 @@ public class FirstPersonController : MonoBehaviour
         // Gets the movement of wsad
         xSpeed = Input.GetAxis("Horizontal");
         zSpeed = Input.GetAxis("Vertical");
+
+        xSpeed = xSpeed * speedMultiplier;
+        zSpeed = zSpeed * speedMultiplier;
 
         // Checks if both horizontal and vertical movement is active
         if (Input.GetAxis("Horizontal") != 0 && Input.GetAxis("Vertical") != 0)
@@ -105,6 +128,33 @@ public class FirstPersonController : MonoBehaviour
             playerCharacterController.stepOffset = stepOffset;
         }
 
+    }
+
+    private void Crouch()
+    {
+        if (pressedCrouch == false)
+        {
+            // Finds the y position of the animator, and moves it down
+            float yposition;
+            yposition = animator.transform.position.y;
+            yposition -= 0.7f;
+            animator.transform.position = new Vector3(animator.transform.position.x, yposition, animator.transform.position.z);
+            // pressedCrouch ensures the camera only moves down once
+            pressedCrouch = true;
+        }
+        // Sets the speed multiplier to be the crouch speed
+        speedMultiplier = crouchSpeedMultiplier;
+    }
+
+    private void Stand()
+    {
+        // Will undo the camera movement from crouching
+        float yposition;
+        yposition = animator.transform.position.y;
+        yposition += 0.7f;
+        animator.transform.position = new Vector3(animator.transform.position.x, yposition, animator.transform.position.z);
+        // Sets speed back to regular
+        speedMultiplier = 1;
     }
 
     private void DebugMenu()
