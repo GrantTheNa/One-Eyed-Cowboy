@@ -54,6 +54,7 @@ public class FirstPersonController : MonoBehaviour
             Stand();
         }
 
+
         FirstPersonCamera();
         HorizontalMovement();
         VerticalMovement();
