@@ -36,11 +36,11 @@ public class Doors : MonoBehaviour
         Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.forward * 3);
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 3f) == true && hit.collider.gameObject == door && timerTemp <= 0)
         {
-            if(doorOpened == false)
+            if(doorOpened == false && openDoorText != null)
             {
                 openDoorText.SetActive(true);
             }
-            else
+            else if (closeDoorText != null)
             {
                 closeDoorText.SetActive(true);
             }
@@ -50,8 +50,11 @@ public class Doors : MonoBehaviour
         }
         else
         {
-            openDoorText.SetActive(false);
-            closeDoorText.SetActive(false);
+            if (closeDoorText != null && openDoorText != null)
+            {
+                openDoorText.SetActive(false);
+                closeDoorText.SetActive(false);
+            }
             lookingAtDoor = false;
         }
 
