@@ -5,11 +5,11 @@ using UnityEngine;
 public class Doors : MonoBehaviour
 {
     // Variables that need assigning
-    public GameObject door;
-    [SerializeField] private GameObject openDoorText;
-    [SerializeField] private GameObject closeDoorText;
-    [SerializeField] private GameObject playerCamera;
-    [SerializeField] private Animator doorAnimator;
+    private GameObject door;
+    private GameObject openDoorText;
+    private GameObject closeDoorText;
+    private GameObject playerCamera;
+    private Animator doorAnimator;
 
     // Variables that need to be set
     public float doorOpeningTime = 0.5f;
@@ -21,6 +21,7 @@ public class Doors : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Assigns all of the components used
         playerCamera = GameObject.Find("First Person Camera");
         openDoorText = GameObject.Find("OpenDoorText");
         closeDoorText = GameObject.Find("CloseDoorText");
@@ -31,12 +32,16 @@ public class Doors : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Sets a raycast from the player's eyes out for 3 metres to see if they are hovering over the door
         RaycastHit hit;
+        // Debug ray is the same as the raycast below
         Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.forward * 3);
+        // Sends a raycast 3 metres out from where the player is looking, checks if the raycast hits the door, and if the timer cooldown is not active
+        // This raycast does not seem to work properly for displaying text, as it flickers when moving, but there have been no problems with opening the door
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 3f) == true && hit.collider.gameObject == door && timerTemp <= 0)
         {
-            if(doorOpened == false && openDoorText != null)
+            // Checks if the door is opened or closed to show appropiate text
+            // Also checks if the text for "E to open/close door" is unassigned, and doesn't activate code if so
+            if (doorOpened == false && openDoorText != null)
             {
                 openDoorText.SetActive(true);
             }
@@ -46,34 +51,37 @@ public class Doors : MonoBehaviour
             }
 
             lookingAtDoor = true;
-            Debug.Log("Door Hit");
         }
         else
         {
+            // Checks for unnassigned text first
             if (closeDoorText != null && openDoorText != null)
             {
                 openDoorText.SetActive(false);
                 closeDoorText.SetActive(false);
             }
+
             lookingAtDoor = false;
         }
 
-        // Code to open and close the door (play the door animations)
-        if(lookingAtDoor == true && Input.GetAxis("Fire2") != 0 && doorOpened == false)
+        // Checks if player presses "E" on a closed door
+        if (lookingAtDoor == true && Input.GetAxis("Fire2") != 0 && doorOpened == false)
         {
-            Debug.Log("Opened Door");
+            // Triggers door animation to open and begins cooldown timer for the door
             doorAnimator.SetTrigger("opened");
             doorOpened = true;
             timerTemp = doorOpeningTime;
         }
+        // Checks if player presses "E" on an open door
         else if (lookingAtDoor == true && Input.GetAxis("Fire2") != 0 && doorOpened == true)
         {
-            Debug.Log("Closed Door");
+            // Triggers door animation to close and begins cooldown timer for the door
             doorAnimator.ResetTrigger("opened");
             doorOpened = false;
             timerTemp = doorOpeningTime;
         }
 
+        // Reduce cooldown timer
         timerTemp -= Time.deltaTime;
     }
 }
