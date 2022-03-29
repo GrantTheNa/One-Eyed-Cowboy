@@ -36,6 +36,10 @@ public class Monster : MonoBehaviour
     bool m_IsPatrol;
     bool m_CaughtPlayer;
 
+    Vector3 previous;
+    public float velocity;
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,7 +55,9 @@ public class Monster : MonoBehaviour
 
         navMeshAgent.isStopped = false;
         navMeshAgent.speed = speedWalk;
-        navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
+        navMeshAgent.SetDestination(waypoints
+            [m_CurrentWaypointIndex].position);
+
     }
         // Update is called once per frame
     void Update()
@@ -66,6 +72,16 @@ public class Monster : MonoBehaviour
         {
             Patroling();
         }
+    }
+
+
+    public void FixedUpdate()
+    {
+        velocity = ((transform.position - previous).magnitude) / Time.deltaTime;
+        previous = transform.position;
+
+        print(velocity);
+
     }
 
     private void Chasing()
