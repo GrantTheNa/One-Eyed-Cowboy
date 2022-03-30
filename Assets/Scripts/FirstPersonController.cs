@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FirstPersonController : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class FirstPersonController : MonoBehaviour
     public DebugMenu debugMenu;
     public Camera playerCamera;
     public GameObject animator;
+    public Slider leftStaminaSlider;
+    public Slider rightStaminaSlider;
 
     // Variables that need adjusting
     public float movementSpeed = 10;
@@ -17,13 +20,19 @@ public class FirstPersonController : MonoBehaviour
     public float mouseSensitivity = 2;
     public float jumpHeight = 2;
     public float fallSpeed = 5;
+    public float staminaMax = 10;
+    public float sprintJump = 1.5f;
+    public float sprintSpeedMultiplier = 1.6f;
+    public float sprintUsage = 2;
+    public float sprintRegen = 0.5f;
 
     // Variables that need accessing
     public float xSpeed, ySpeed, zSpeed;
+    public bool isGrounded;
 
     // Private Variables
-    private float mouseX, mouseY, stepOffset, speedMultiplier;
-    private bool isGrounded, pressedCrouch;
+    private float mouseX, mouseY, stepOffset, speedMultiplier, stamina, staminaCooldown;
+    private bool pressedCrouch;
 
     // Start is called before the first frame update
     void Start()
@@ -37,13 +46,21 @@ public class FirstPersonController : MonoBehaviour
 
         // Sets the speed multiplier to be regular at 1
         speedMultiplier = 1;
+
+        // Sets stamina to max, and assigns stamina value to sliders
+        stamina = staminaMax;
+        leftStaminaSlider.maxValue = staminaMax;
+        rightStaminaSlider.maxValue = staminaMax;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Checks is ctrl is held
-        if (Input.GetAxisRaw("Fire1") != 0)
+        // Check if player is grounded
+        isGrounded = playerFeet.isGrounded;
+
+        // Checks is ctrl is held and player is not in midair
+        if (Input.GetAxisRaw("Fire1") != 0 && isGrounded == true)
         {
             Crouch();
         }
@@ -53,12 +70,18 @@ public class FirstPersonController : MonoBehaviour
             pressedCrouch = false;
             Stand();
         }
-
+        // allows sprint if player is not crouched or in midair
+        else if (isGrounded == true)
+        {
+            Sprint();
+        }
 
         FirstPersonCamera();
         HorizontalMovement();
         VerticalMovement();
         Movement();
+        StaminaRegen();
+        UpdateSprintBar();
         DebugMenu();
     }
     void Movement()
@@ -104,8 +127,6 @@ public class FirstPersonController : MonoBehaviour
 
     void VerticalMovement()
     {
-        isGrounded = playerFeet.isGrounded;
-
         // Checks if the player can jump
         if (Input.GetAxis("Jump") != 0 && isGrounded == true && ySpeed == 0)
         {
@@ -165,5 +186,73 @@ public class FirstPersonController : MonoBehaviour
         debugMenu.ySpeed = ySpeed;
         debugMenu.zSpeed = zSpeed;
         debugMenu.isGrounded = isGrounded;
+    }
+
+    private void Sprint()
+    {
+        // Checks if player is holding sprint, has stamina, and is not in a cooldown period
+        if (Input.GetAxisRaw("Fire3") != 0 && stamina > 0 && staminaCooldown == 0)
+        {
+            // Sets speed to sprint
+            speedMultiplier = sprintSpeedMultiplier;
+            // Checks if the player has jumped during the sprint
+            if (Input.GetAxis("Jump") != 0 && isGrounded == true && ySpeed == 0)
+            {
+                stamina -= sprintJump;
+            }
+            // Use stamina and prevent stamina from being a negative number
+            stamina -= Time.deltaTime * sprintUsage;
+            if (stamina < 0)
+            {
+                stamina = 0;
+            }    
+        }
+        // Checks is stamina is 0 and player is not on a cooldown period, activates cooldown if so
+        else if (stamina == 0 && staminaCooldown == 0)
+        {
+            staminaCooldown = 2;
+            speedMultiplier = 1;
+        }
+        else
+        {
+            // Sets to regular speed
+            speedMultiplier = 1;
+        }
+    }
+
+    private void StaminaRegen()
+    {
+        // Checks if player isn't sprinting first
+        if (speedMultiplier != sprintSpeedMultiplier)
+        {
+            if (staminaCooldown > 0)
+            {
+                // Reduces cooldown, and prevents it from becoming a negative number. Increases stamina once at 0
+                staminaCooldown -= Time.deltaTime;
+                if (staminaCooldown <= 0)
+                {
+                    staminaCooldown = 0;
+                    stamina += Time.deltaTime * sprintRegen;
+                }
+            }
+            else
+            {
+                // Stamina regeneration
+                stamina += Time.deltaTime * sprintRegen;
+                // Prevents it from going over set stamina maximum
+                if (stamina > staminaMax)
+                {
+                    stamina = staminaMax;
+                }
+            }
+        }
+
+    }
+
+    private void UpdateSprintBar()
+    {
+        // Updates the sliders to show sprint level
+        leftStaminaSlider.value = stamina;
+        rightStaminaSlider.value = stamina;
     }
 }
