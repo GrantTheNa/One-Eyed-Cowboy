@@ -44,7 +44,7 @@ public class WalkAnom : MonoBehaviour
         }
 
         //////walking sounds/////
-        if (isWalking == true && GetComponent<AudioSource>().isPlaying == false && playingSound == false)
+        if (isWalking == true && playingSound == false && playerScript.isGrounded == true)
         {
             StartCoroutine(WalkSound());
         }
