@@ -15,6 +15,8 @@ public class WalkAnom : MonoBehaviour
 
     public bool pressedCrouch = false;
 
+    bool isWalking;
+    bool playingSound;
 
     // Start is called before the first frame update
     void Start()
@@ -30,21 +32,62 @@ public class WalkAnom : MonoBehaviour
     void Update()
     {
 
+        if (playerScript.isSprinting == true)
+        {
+            animator.SetBool("Sprint", true);
+        }
+        else
+        {
+            animator.SetBool("Sprint", false);
+        }
+
+        //walking 
         if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
         {
             if (velocity! < 1.0f)
             {
                 velocity += Time.deltaTime * acceleration * 7;
                 Debug.Log(velocity);
+                isWalking = true;
             }
 
         }
 
+        //////walking sounds/////
+        if (isWalking == true && playingSound == false && playerScript.isGrounded == true && playerScript.isSprinting == false)
+        {
+            StartCoroutine(WalkSound());
+        }
+        else if (isWalking == true && playingSound == false && playerScript.isGrounded == true && playerScript.isSprinting == true)
+        {
+            StartCoroutine(SprintSound());
+        }
+
+        IEnumerator WalkSound()
+        {
+            playingSound = true;
+            GetComponent<AudioSource>().Play();
+            yield return new WaitForSeconds(0.5f);
+            playingSound = false;
+        }
+
+        IEnumerator SprintSound()
+        {
+            playingSound = true;
+            GetComponent<AudioSource>().Play();
+            yield return new WaitForSeconds(0.33333333333f);
+            playingSound = false;
+        }
+
+
+        //animation velocity change
         animator.SetFloat(VelocityHash, velocity);
 
+        //stop walking
         if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0 && velocity > 0.0f)
         {
             velocity -= Time.deltaTime * deceleration * 4;
+            isWalking = false;
         }
 
 
