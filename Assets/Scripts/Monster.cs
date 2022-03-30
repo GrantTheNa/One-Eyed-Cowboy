@@ -77,7 +77,7 @@ public class Monster : MonoBehaviour
 
     public void FixedUpdate()
     {
-        velocity = ((transform.position - previous).magnitude) / Time.deltaTime;
+        velocity = ((transform.position - previous).magnitude) / Time.fixedDeltaTime;
         previous = transform.position;
 
         print(velocity);
@@ -202,6 +202,7 @@ public class Monster : MonoBehaviour
         void EnvironmentView()
         {
             Collider[] playerInRange = Physics.OverlapSphere(transform.position, viewRadius, playerMask);
+            
 
             for (int i = 0; i < playerInRange.Length; i++)
             {
@@ -210,15 +211,17 @@ public class Monster : MonoBehaviour
                 if (Vector3.Angle(transform.forward, dirToPlayer) < viewAngle / 2)
                 {
                     float dstToPlayer = Vector3.Distance(transform.position, player.position);
-                    if (!Physics.Raycast(transform.position, dirToPlayer, dstToPlayer, obstacleMask))
+                   if (!Physics.Raycast(transform.position, dirToPlayer, dstToPlayer, obstacleMask))
                     {
                         m_PlayerInRange = true;
                         m_IsPatrol = false;
+
                     }
                     else
                     {
                         m_PlayerInRange = false;
                     }
+
                 }
                 if (Vector3.Distance(transform.position, player.position) > viewRadius)
                 {

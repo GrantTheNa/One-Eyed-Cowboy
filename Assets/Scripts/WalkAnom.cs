@@ -15,6 +15,8 @@ public class WalkAnom : MonoBehaviour
 
     public bool pressedCrouch = false;
 
+    bool isWalking;
+    bool playingSound;
 
     // Start is called before the first frame update
     void Start()
@@ -29,22 +31,41 @@ public class WalkAnom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //walking 
         if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
         {
             if (velocity! < 1.0f)
             {
                 velocity += Time.deltaTime * acceleration * 7;
                 Debug.Log(velocity);
+                isWalking = true;
             }
 
         }
 
+        //////walking sounds/////
+        if (isWalking == true && GetComponent<AudioSource>().isPlaying == false && playingSound == false)
+        {
+            StartCoroutine(WalkSound());
+        }
+
+        IEnumerator WalkSound()
+        {
+            playingSound = true;
+            GetComponent<AudioSource>().Play();
+            yield return new WaitForSeconds(0.5f);
+            playingSound = false;
+        }
+
+
+        //animation velocity change
         animator.SetFloat(VelocityHash, velocity);
 
+        //stop walking
         if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0 && velocity > 0.0f)
         {
             velocity -= Time.deltaTime * deceleration * 4;
+            isWalking = false;
         }
 
 
