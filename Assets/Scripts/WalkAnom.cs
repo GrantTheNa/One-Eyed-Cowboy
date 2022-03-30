@@ -31,6 +31,16 @@ public class WalkAnom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (playerScript.isSprinting == true)
+        {
+            animator.SetBool("Sprint", true);
+        }
+        else
+        {
+            animator.SetBool("Sprint", false);
+        }
+
         //walking 
         if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
         {
@@ -44,9 +54,13 @@ public class WalkAnom : MonoBehaviour
         }
 
         //////walking sounds/////
-        if (isWalking == true && playingSound == false && playerScript.isGrounded == true)
+        if (isWalking == true && playingSound == false && playerScript.isGrounded == true && playerScript.isSprinting == false)
         {
             StartCoroutine(WalkSound());
+        }
+        else if (isWalking == true && playingSound == false && playerScript.isGrounded == true && playerScript.isSprinting == true)
+        {
+            StartCoroutine(SprintSound());
         }
 
         IEnumerator WalkSound()
@@ -54,6 +68,14 @@ public class WalkAnom : MonoBehaviour
             playingSound = true;
             GetComponent<AudioSource>().Play();
             yield return new WaitForSeconds(0.5f);
+            playingSound = false;
+        }
+
+        IEnumerator SprintSound()
+        {
+            playingSound = true;
+            GetComponent<AudioSource>().Play();
+            yield return new WaitForSeconds(0.33333333333f);
             playingSound = false;
         }
 
