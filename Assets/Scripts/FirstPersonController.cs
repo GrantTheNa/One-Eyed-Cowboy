@@ -28,7 +28,7 @@ public class FirstPersonController : MonoBehaviour
 
     // Variables that need accessing
     public float xSpeed, ySpeed, zSpeed;
-    public bool isGrounded;
+    public bool isGrounded, isSprinting, isMovingOnGround;
 
     // Private Variables
     private float mouseX, mouseY, stepOffset, speedMultiplier, stamina, staminaCooldown;
@@ -59,8 +59,21 @@ public class FirstPersonController : MonoBehaviour
         // Check if player is grounded
         isGrounded = playerFeet.isGrounded;
 
+        if (xSpeed != 0 && isGrounded == true)
+        {
+            isMovingOnGround = true;
+        }
+        else if (zSpeed != 0 && isGrounded == true)
+        {
+            isMovingOnGround = true;
+        }
+        else
+        {
+            isMovingOnGround = false;
+        }
+
         // Checks is ctrl is held and player is not in midair
-        if (Input.GetAxisRaw("Fire1") != 0 && isGrounded == true)
+        if (Input.GetAxisRaw("Fire1") != 0 && isGrounded == true && ySpeed == 0)
         {
             Crouch();
         }
@@ -71,7 +84,7 @@ public class FirstPersonController : MonoBehaviour
             Stand();
         }
         // allows sprint if player is not crouched or in midair
-        else if (isGrounded == true)
+        else if (isGrounded == true && ySpeed == 0)
         {
             Sprint();
         }
@@ -82,6 +95,15 @@ public class FirstPersonController : MonoBehaviour
         Movement();
         StaminaRegen();
         UpdateSprintBar();
+
+        if (speedMultiplier == sprintSpeedMultiplier && isGrounded == true && ySpeed == 0)
+        {
+            isSprinting = true;
+        }
+        else
+        {
+            isSprinting = false;
+        }
         DebugMenu();
     }
     void Movement()
@@ -191,7 +213,7 @@ public class FirstPersonController : MonoBehaviour
     private void Sprint()
     {
         // Checks if player is holding sprint, has stamina, and is not in a cooldown period
-        if (Input.GetAxisRaw("Fire3") != 0 && stamina > 0 && staminaCooldown == 0)
+        if (Input.GetAxisRaw("Fire3") != 0 && stamina > 0 && staminaCooldown == 0 & isMovingOnGround == true)
         {
             // Sets speed to sprint
             speedMultiplier = sprintSpeedMultiplier;
