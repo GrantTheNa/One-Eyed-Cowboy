@@ -41,6 +41,10 @@ public class FirstPersonController : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
+        // Assigning variables
+        leftStaminaSlider = GameObject.Find("StaminaMeterLeft").GetComponent<Slider>();
+        rightStaminaSlider = GameObject.Find("StaminaMeterRight").GetComponent <Slider>();
+
         // Sets the step off set to what it is set in Unity
         stepOffset = playerCharacterController.stepOffset;
 
