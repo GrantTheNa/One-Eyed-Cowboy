@@ -580,7 +580,7 @@ Transform:
   m_GameObject: {fileID: 5785825772862153699}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1.5, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.06, y: 0.06, z: 0.06}
   m_Children:
   - {fileID: 5785825772361387352}
   - {fileID: 5785825773161724538}
@@ -964,9 +964,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 114aecef23bf08b4e8460ffb0f62e18e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  door: {fileID: 0}
-  openDoorText: {fileID: 0}
-  closeDoorText: {fileID: 0}
-  playerCamera: {fileID: 0}
-  doorAnimator: {fileID: 0}
   doorOpeningTime: 0.2
