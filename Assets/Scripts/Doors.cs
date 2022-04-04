@@ -33,11 +33,12 @@ public class Doors : MonoBehaviour
     void Update()
     {
         RaycastHit hit;
-        // Debug ray is the same as the raycast below
-        Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.forward * 3);
+        // Sets layermask to default, ignores player and UI layermask for the raycast
+        int layerMask = 1 << 0;
+        // Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.forward * 3);
         // Sends a raycast 3 metres out from where the player is looking, checks if the raycast hits the door, and if the timer cooldown is not active
         // This raycast does not seem to work properly for displaying text, as it flickers when moving, but there have been no problems with opening the door
-        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 3f) == true && hit.collider.gameObject == door && timerTemp <= 0)
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 3f, layerMask) == true && hit.collider.gameObject == door && timerTemp <= 0)
         {
             // Checks if the door is opened or closed to show appropiate text
             // Also checks if the text for "E to open/close door" is unassigned, and doesn't activate code if so
