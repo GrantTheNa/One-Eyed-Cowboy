@@ -63,7 +63,7 @@ public class MonsterWalk : MonoBehaviour
         {
             playingSound = true;
             GetComponent<AudioSource>().Play();
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1f);
             playingSound = false;
         }
 
