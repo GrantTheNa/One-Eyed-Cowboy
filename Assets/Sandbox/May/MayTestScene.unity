@@ -979,6 +979,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2084625742599866522, guid: 4666469daa0766c44a929d39189e4278, type: 3}
+      propertyPath: canHold
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2084625742599866522, guid: 4666469daa0766c44a929d39189e4278, type: 3}
+      propertyPath: tempParent
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2084625742599866522, guid: 4666469daa0766c44a929d39189e4278, type: 3}
+      propertyPath: throwForce
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2084625742599866522, guid: 4666469daa0766c44a929d39189e4278, type: 3}
+      propertyPath: grabDistance
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7921116622562485305, guid: 4666469daa0766c44a929d39189e4278, type: 3}
       propertyPath: m_Name
       value: Wooden_Crate 1
