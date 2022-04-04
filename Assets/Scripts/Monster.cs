@@ -208,6 +208,7 @@ public class Monster : MonoBehaviour
             {
                 Transform player = playerInRange[i].transform;
                 Vector3 dirToPlayer = (player.position - transform.position).normalized;
+                Debug.DrawRay(transform.position, dirToPlayer, Color.red, obstacleMask);
                 if (Vector3.Angle(transform.forward, dirToPlayer) < viewAngle / 2)
                 {
                     float dstToPlayer = Vector3.Distance(transform.position, player.position);
