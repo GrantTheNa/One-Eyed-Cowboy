@@ -44,6 +44,7 @@ public class FirstPersonController : MonoBehaviour
         // Assigning variables
         leftStaminaSlider = GameObject.Find("StaminaMeterLeft").GetComponent<Slider>();
         rightStaminaSlider = GameObject.Find("StaminaMeterRight").GetComponent <Slider>();
+        debugMenu = GameObject.Find("Canvas").GetComponent<DebugMenu>();
 
         // Sets the step off set to what it is set in Unity
         stepOffset = playerCharacterController.stepOffset;
