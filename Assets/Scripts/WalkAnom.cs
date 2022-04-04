@@ -27,6 +27,7 @@ public class WalkAnom : MonoBehaviour
         VelocityHash = Animator.StringToHash("Velocity");
 
         animator.SetBool("Crouch", false);
+        shadow.SetBool("Crouch", false);
     }
 
     // Update is called once per frame
@@ -36,10 +37,12 @@ public class WalkAnom : MonoBehaviour
         if (playerScript.isSprinting == true)
         {
             animator.SetBool("Sprint", true);
+            shadow.SetBool("Sprint", true);
         }
         else
         {
             animator.SetBool("Sprint", false);
+            shadow.SetBool("Sprint", false);
         }
 
         //walking 
@@ -48,7 +51,7 @@ public class WalkAnom : MonoBehaviour
             if (velocity! < 1.0f)
             {
                 velocity += Time.deltaTime * acceleration * 7;
-                // Debug.Log(velocity);
+                Debug.Log(velocity);
                 isWalking = true;
             }
 
@@ -83,6 +86,7 @@ public class WalkAnom : MonoBehaviour
 
         //animation velocity change
         animator.SetFloat(VelocityHash, velocity);
+        shadow.SetFloat(VelocityHash, velocity);
 
         //stop walking
         if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0 && velocity > 0.0f)
@@ -96,6 +100,7 @@ public class WalkAnom : MonoBehaviour
         if (Input.GetAxisRaw("Fire1") != 0)
         {
             animator.SetBool("Crouch", true);
+            shadow.SetBool("Crouch", true);
             pressedCrouch = true;
 
         }
@@ -103,6 +108,7 @@ public class WalkAnom : MonoBehaviour
         {
             pressedCrouch = false;
             animator.SetBool("Crouch", false);
+            shadow.SetBool("Crouch", false);
         }
     }
 }
