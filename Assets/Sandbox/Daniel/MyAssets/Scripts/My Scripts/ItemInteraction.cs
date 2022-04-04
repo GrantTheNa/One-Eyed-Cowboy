@@ -4,89 +4,97 @@ using UnityEngine;
 
 public class ItemInteraction : MonoBehaviour
 {
-    //Interactable item
+    // Variables that need assigning
     public GameObject item;
+    public GameObject playerCamera;
 
-    //Empty game object in front of player
-    public GameObject tempParent;
-    
-    Vector3 objectPos;  
+    // Variables that need adjusting
+    public float grabDistance = 1;
+    public float throwForce = 1200;
 
-    //Strength of throw on object
-    public float throwForce = 1200;  
-    
-    
-    float distance;
+    // Private variables
+    private Vector3 objectPos;
+    private bool highlighted, isHolding;
+    private float timer;
 
-    public bool canHold = true;    
-    public bool isHolding = false;
-  
 
+    public void Start()
+    {
+        // Assigning Variables
+        playerCamera = GameObject.Find("First Person Camera");
+    }
     public void Update()
     {
-        distance = Vector3.Distance(item.transform.position, tempParent.transform.position);
-        
-        if (distance >= 2f)
+        Highlight();
+        HoldingCheck();
+        Hold();
+    }
+
+    private void Highlight()
+    {
+        // Sets layermask to default, ignores player and UI layermask for the raycast
+        int layerMask = 1 << 0;
+        RaycastHit hit;
+        // Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.forward * grabDistance);
+        // If raycast hits the item, item is highlighted
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, grabDistance, layerMask) && hit.collider.gameObject == item)
+        {
+            highlighted = true;
+            timer = 0.1f;
+            GetComponent<Outline>().enabled = true;
+        }
+        // Otherwise, item isn't highlighted
+        else
+        {
+            highlighted = false;
+            timer -= Time.deltaTime;
+            if (timer < 0)
             {
-                isHolding = false;
-            }         
+                timer = 0;
+            }
+            GetComponent<Outline>().enabled = false;
+        }
+    }
 
+    private void HoldingCheck()
+    {
+        // Checks for dropping object, or if object is no longer highlighted through highlight timer (timer is used due to reasons with item not being highlighted for a frame)
+        if (isHolding == true && Input.GetMouseButtonDown(0) == true || timer == 0)
+        {
+            isHolding = false;
+        }
+        // Checks for throwing object
+        else if (isHolding == true && Input.GetMouseButtonDown(1) == true)
+        {
+            item.GetComponent<Rigidbody>().AddForce(playerCamera.transform.forward * throwForce);
+            isHolding = false;
+        }
+        // Checks for picking up an object
+        else if (highlighted == true && Input.GetMouseButtonDown(0) == true)
+        {
+            isHolding = true;
+        }
 
-        //Check if isholding
+    }
+
+    private void Hold()
+    {
+        // Code for holding an object
         if (isHolding == true)
         {
             item.GetComponent<Rigidbody>().velocity = Vector3.zero;
             item.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-            item.transform.SetParent(tempParent.transform);
+            item.transform.SetParent(playerCamera.transform);
             item.GetComponent<Rigidbody>().useGravity = false;
-
-
-            //if Players presses Right Mouse Button, throw held object
-            if (Input.GetMouseButtonDown(1))
-            {
-                item.GetComponent<Rigidbody>().AddForce(tempParent.transform.forward * throwForce);
-                isHolding = false;
-            }
         }
 
-        //is isholding is false
+        // Code when no longer holding object
         else
         {
             objectPos = item.transform.position;
             item.transform.SetParent(null);
             item.GetComponent<Rigidbody>().useGravity = true;
             item.transform.position = objectPos;
-            Outline();
-        }      
-        
-    }
-    //if you are close enough to the object, and you click and hold LMB, you can pick up the object
-    void OnMouseDown()
-        {
-            if (distance <= 2f)
-            {
-                isHolding = true;
-            }
-        }
-    //if you release LMB, you drop the object
-    void OnMouseUp()
-    {
-        isHolding = false;       
-    }
-    
-    //Outlines the object
-    public void Outline()
-    {
-        if (item.CompareTag("Item")) //|| item.CompareTag("ItemPile"))
-        {
-            if (distance <= 2f)
-            {
-                GetComponent<Outline>().enabled = true;
-            }
-            else
-            {
-                GetComponent<Outline>().enabled = false;
-            }
         }
     }
 }
