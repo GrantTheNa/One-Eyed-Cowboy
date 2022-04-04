@@ -5,6 +5,7 @@ using UnityEngine;
 public class WalkAnom : MonoBehaviour
 {
     public Animator animator;
+    public Animator shadow;
 
     public FirstPersonController playerScript; //Get player Script
 
