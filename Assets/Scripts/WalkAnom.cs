@@ -51,7 +51,7 @@ public class WalkAnom : MonoBehaviour
             if (velocity! < 1.0f)
             {
                 velocity += Time.deltaTime * acceleration * 7;
-                Debug.Log(velocity);
+                // Debug.Log(velocity);
                 isWalking = true;
             }
 
