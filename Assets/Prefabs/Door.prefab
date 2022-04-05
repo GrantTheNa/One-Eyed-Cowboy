@@ -18,7 +18,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5785825772361387352
 Transform:
@@ -652,7 +652,7 @@ GameObject:
   - component: {fileID: 5785825773434804653}
   - component: {fileID: 5785825773434804652}
   - component: {fileID: 5785825773434804648}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DoorModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
