@@ -16,6 +16,7 @@ public class MonsterWalk : MonoBehaviour
     public bool pressedCrouch = false;
 
     bool isWalking;
+    bool isRunning;
     bool playingSound;
 
     // Start is called before the first frame update
@@ -39,6 +40,7 @@ public class MonsterWalk : MonoBehaviour
                 velocity += Time.deltaTime * acceleration * 7;
                 Debug.Log(velocity);
                 isWalking = true;
+                isRunning = false;
             }
         }
 
@@ -50,13 +52,23 @@ public class MonsterWalk : MonoBehaviour
                 velocity += Time.deltaTime * acceleration * 7;
                 Debug.Log(velocity);
                 isWalking = true;
+                isRunning = true;
             }
         }
 
         //////walking sounds/////
         if (isWalking == true && GetComponent<AudioSource>().isPlaying == false && playingSound == false)
         {
-            StartCoroutine(WalkSound());
+            if (isRunning == false)
+            {
+                StartCoroutine(WalkSound());
+            }
+            else if (isRunning == true)
+            {
+                StartCoroutine(RunSound());
+
+            }
+
         }
 
         IEnumerator WalkSound()
@@ -64,6 +76,14 @@ public class MonsterWalk : MonoBehaviour
             playingSound = true;
             GetComponent<AudioSource>().Play();
             yield return new WaitForSeconds(1f);
+            playingSound = false;
+        }
+
+        IEnumerator RunSound()
+        {
+            playingSound = true;
+            GetComponent<AudioSource>().Play();
+            yield return new WaitForSeconds(0.15f);
             playingSound = false;
         }
 
