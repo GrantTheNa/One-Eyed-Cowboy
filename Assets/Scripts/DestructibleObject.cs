@@ -52,7 +52,7 @@ public class DestructibleObject : MonoBehaviour
         Debug.Log("PreWhile");
         while (whileLoop)
         {
-            Debug.Log("LOOP THAT SHIT");
+            //Debug.Log("LOOP THAT SHIT");
             yield return new WaitForSeconds(0.2f);
             DistractMonster();
         }
@@ -62,7 +62,7 @@ public class DestructibleObject : MonoBehaviour
     {
         if (monsterWalkScript.isWalking)
         {
-            Debug.Log("Distraction on Sight");
+            //Debug.Log("Distraction on Sight");
             whileLoop = false;
             monsterScript.distractionPoint = wayPoint;
             monsterScript.distracted = true;
