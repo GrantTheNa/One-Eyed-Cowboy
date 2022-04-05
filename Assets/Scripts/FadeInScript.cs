@@ -9,6 +9,15 @@ public class FadeInScript : MonoBehaviour
     public GameObject player;
     public GameObject enemy;
 
+    float distance;
+
+    float alphaValue;
+    float targetValue;
+
+    float full = 1;
+    float half = 0.5f;
+    float none = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,18 +30,33 @@ public class FadeInScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if (Input.GetKeyDown(KeyCode.Z))
+        distance = Vector3.Distance(player.transform.position, enemy.transform.position);
+        Debug.Log(distance + "is how far the enemy is");
+
+        if (distance >16)
         {
-            sprite.color = new Color(1, 0, 0, 1);
+            targetValue = 0;
         }
-        if (Input.GetKeyDown(KeyCode.X))
+        else if (distance <16 && distance >8)
         {
-            sprite.color = new Color(1, 0, 0, 0.5f);
+            targetValue = 0.3f;
         }
-        if (Input.GetKeyDown(KeyCode.C))
+        else if (distance < 8 && distance > 4)
         {
-            sprite.color = new Color(1, 0, 0, 0);
+            targetValue = 0.75f;
         }
+        else if (distance <4)
+        {
+            targetValue = 1;
+        }
+
+
+        float delta = targetValue - alphaValue;
+        delta *= Time.deltaTime;
+
+        alphaValue += delta;
+
+        sprite.color = new Color(1, 0, 0, alphaValue);
     }
 
 }

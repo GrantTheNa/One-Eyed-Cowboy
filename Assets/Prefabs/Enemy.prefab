@@ -192,8 +192,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 3571950997335300679}
   MonsterScript: {fileID: 2375350539008288706}
-  acceleration: 0.01
-  deceleration: 0.05
+  acceleration: 0.4
+  deceleration: 0.1
   pressedCrouch: 0
 --- !u!82 &6940539332312644972
 AudioSource:
