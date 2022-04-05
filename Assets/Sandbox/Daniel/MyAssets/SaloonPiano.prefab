@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 990685006104949723}
   - component: {fileID: 3052149215160436497}
   - component: {fileID: -8576893581354895736}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SaloonPiano
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3972202858894414972}
   - component: {fileID: 3972202858894414975}
   - component: {fileID: 3972202858894414974}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wooden_StorageChest
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -145,7 +145,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 3972202858894414849}
-  tempParent: {fileID: 0}
+  playerCamera: {fileID: 0}
+  grabDistance: 1
   throwForce: 1200
-  canHold: 1
-  isHolding: 0
