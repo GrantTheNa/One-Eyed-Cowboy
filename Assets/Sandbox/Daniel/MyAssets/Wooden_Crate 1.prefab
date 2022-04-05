@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8256c80348b5c3b42b0a98f3ad6849db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 0
+  outlineMode: 1
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
   outlineWidth: 2
   precomputeOutline: 0
@@ -145,7 +145,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 7921116622562485305}
-  tempParent: {fileID: 0}
+  playerCamera: {fileID: 0}
+  grabDistance: 2
   throwForce: 1200
-  canHold: 1
-  isHolding: 0
