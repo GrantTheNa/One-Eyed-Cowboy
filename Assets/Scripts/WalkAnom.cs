@@ -44,7 +44,7 @@ public class WalkAnom : MonoBehaviour
         }
 
         //walking 
-        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        if (playerScript.xSpeed >= 0.5 || playerScript.xSpeed <= -0.5 || playerScript.zSpeed >= 0.5 || playerScript.zSpeed <= -0.5)
         {
             if (velocity! < 1.0f)
             {
@@ -52,8 +52,18 @@ public class WalkAnom : MonoBehaviour
                 // Debug.Log(velocity);
                 isWalking = true;
             }
+        }
+        else
+        {
+            //stop walking
+            velocity -= Time.deltaTime * deceleration * 4;
+            isWalking = false;
 
         }
+
+        //animation velocity change
+        animator.SetFloat(VelocityHash, velocity);
+        shadow.SetFloat(VelocityHash, velocity);
 
         //////walking sounds/////
         if (isWalking == true && playingSound == false && playerScript.isGrounded == true && playerScript.isSprinting == false)
@@ -82,16 +92,6 @@ public class WalkAnom : MonoBehaviour
         }
 
 
-        //animation velocity change
-        animator.SetFloat(VelocityHash, velocity);
-        shadow.SetFloat(VelocityHash, velocity);
-
-        //stop walking
-        if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0 && velocity > 0.0f)
-        {
-            velocity -= Time.deltaTime * deceleration * 4;
-            isWalking = false;
-        }
 
 
         //Crouch Animation
