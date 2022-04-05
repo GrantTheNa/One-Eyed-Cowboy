@@ -18082,6 +18082,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6940539332312644972, guid: 117b53329d09d1641b5aae5135a23418, type: 3}
+      propertyPath: m_Pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6940539332312644972, guid: 117b53329d09d1641b5aae5135a23418, type: 3}
       propertyPath: MaxDistance
       value: 25
       objectReference: {fileID: 0}
