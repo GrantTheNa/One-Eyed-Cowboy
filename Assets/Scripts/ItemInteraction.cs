@@ -7,6 +7,7 @@ public class ItemInteraction : MonoBehaviour
     // Variables that need assigning
     public GameObject item;
     public GameObject playerCamera;
+    private string originalTag;
 
     // Variables that need adjusting
     public float grabDistance = 2;
@@ -15,13 +16,14 @@ public class ItemInteraction : MonoBehaviour
     // Private variables
     private Vector3 objectPos;
     private bool highlighted, isHolding;
-    private float timer;
+    private float timer, tagTimer;
 
 
     public void Start()
     {
         // Assigning Variables
         playerCamera = GameObject.Find("First Person Camera");
+        originalTag = item.tag;
     }
     public void Update()
     {
@@ -68,13 +70,22 @@ public class ItemInteraction : MonoBehaviour
         {
             item.GetComponent<Rigidbody>().AddForce(playerCamera.transform.forward * throwForce);
             isHolding = false;
+            item.tag = "Thrown";
+            tagTimer = 3;
         }
         // Checks for picking up an object
         else if (highlighted == true && Input.GetMouseButtonDown(0) == true)
         {
             isHolding = true;
+            item.tag = originalTag;
         }
-
+        // Reduces timer for reseting tag
+        tagTimer -= Time.deltaTime;
+        if (tagTimer <= 0)
+        {
+            item.tag = originalTag;
+            tagTimer = 0;
+        }
     }
 
     private void Hold()
