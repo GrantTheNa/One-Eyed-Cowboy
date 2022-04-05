@@ -197,6 +197,7 @@ MonoBehaviour:
   acceleration: 0.4
   deceleration: 0.1
   pressedCrouch: 0
+  isWalking: 0
 --- !u!82 &6940539332312644972
 AudioSource:
   m_ObjectHideFlags: 0
@@ -210,7 +211,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 440aca38378206f449df532cd869a096, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 0.4
   Loop: 0
   Mute: 0
   Spatialize: 0
