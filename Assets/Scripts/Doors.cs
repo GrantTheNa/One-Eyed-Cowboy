@@ -34,7 +34,7 @@ public class Doors : MonoBehaviour
     {
         RaycastHit hit;
         // Sets layermask to default, ignores player and UI layermask for the raycast
-        int layerMask = 1 << 0;
+        int layerMask = 1 << 7;
         // Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.forward * 3);
         // Sends a raycast 3 metres out from where the player is looking, checks if the raycast hits the door, and if the timer cooldown is not active
         // This raycast does not seem to work properly for displaying text, as it flickers when moving, but there have been no problems with opening the door

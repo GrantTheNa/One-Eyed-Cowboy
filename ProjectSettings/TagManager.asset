@@ -6,7 +6,7 @@ TagManager:
   tags:
   - Trigger
   - Item
-  - Enemy
+  - Plank
   layers:
   - Default
   - TransparentFX
@@ -17,7 +17,7 @@ TagManager:
   - Player
   - Obstacles
   - TargetPlayer
-  - 
+  - Enemy
   - 
   - 
   - 
