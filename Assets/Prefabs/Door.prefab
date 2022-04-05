@@ -652,6 +652,7 @@ GameObject:
   - component: {fileID: 5785825773434804653}
   - component: {fileID: 5785825773434804652}
   - component: {fileID: 5785825773434804648}
+  - component: {fileID: 6982694862098849977}
   m_Layer: 7
   m_Name: DoorModel
   m_TagString: Untagged
@@ -964,4 +965,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 114aecef23bf08b4e8460ffb0f62e18e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outline: {fileID: 6982694862098849977}
   doorOpeningTime: 0.2
+--- !u!114 &6982694862098849977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5785825773434805842}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8256c80348b5c3b42b0a98f3ad6849db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
