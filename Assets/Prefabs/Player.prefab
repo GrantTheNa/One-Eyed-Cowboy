@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6009926805232934319}
   - component: {fileID: 9001883588341583786}
   - component: {fileID: 1722889713652249831}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -564,7 +564,7 @@ GameObject:
   - component: {fileID: 5149395708199731101}
   m_Layer: 6
   m_Name: PlayerFeet
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -687,9 +687,9 @@ GameObject:
   - component: {fileID: 7954347295126622839}
   - component: {fileID: 5331203841784692415}
   - component: {fileID: 8435055845976690362}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WoodTrigger
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

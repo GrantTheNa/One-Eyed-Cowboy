@@ -28,11 +28,10 @@ public class FirstPersonController : MonoBehaviour
 
     // Variables that need accessing
     public float xSpeed, ySpeed, zSpeed;
-    public bool isGrounded, isSprinting, isMovingOnGround;
+    public bool isGrounded, isSprinting, isMovingOnGround, pressedCrouch;
 
     // Private Variables
     private float mouseX, mouseY, stepOffset, speedMultiplier, stamina, staminaCooldown;
-    private bool pressedCrouch;
 
     // Start is called before the first frame update
     void Start()

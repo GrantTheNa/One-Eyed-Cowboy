@@ -14,8 +14,6 @@ public class WalkAnom : MonoBehaviour
     public float deceleration = 0.05f;
     int VelocityHash;
 
-    public bool pressedCrouch = false;
-
     bool isWalking;
     bool playingSound;
 
@@ -97,16 +95,14 @@ public class WalkAnom : MonoBehaviour
 
 
         //Crouch Animation
-        if (Input.GetAxisRaw("Fire1") != 0)
+        if (playerScript.pressedCrouch == true)
         {
             animator.SetBool("Crouch", true);
             shadow.SetBool("Crouch", true);
-            pressedCrouch = true;
 
         }
-        else if (pressedCrouch == true)
+        else
         {
-            pressedCrouch = false;
             animator.SetBool("Crouch", false);
             shadow.SetBool("Crouch", false);
         }
