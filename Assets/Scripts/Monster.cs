@@ -40,9 +40,12 @@ public class Monster : MonoBehaviour
     public bool distracted;
     public Transform distractionPoint;
     bool doOnce;
+    bool distractSpeed = false;
 
     Vector3 previous;
     public float velocity;
+
+
     
 
     // Start is called before the first frame update
@@ -171,10 +174,12 @@ public class Monster : MonoBehaviour
             if (distracted)
             {
                 navMeshAgent.SetDestination(distractionPoint.position);
+                distractSpeed = true;
             }
             else if (!distracted)
             {
                 navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
+                distractSpeed = false;
             }
 
             if(navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
@@ -183,6 +188,7 @@ public class Monster : MonoBehaviour
                 {
                     distracted = false;
                     NextPoint();
+                    //Change here
                     Move(speedWalk);
                     m_waitTime = startWaitTime;
                 }

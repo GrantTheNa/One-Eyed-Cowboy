@@ -15,7 +15,7 @@ public class MonsterWalk : MonoBehaviour
 
     public bool pressedCrouch = false;
 
-    bool isWalking;
+    public bool isWalking;
     bool isRunning;
     bool playingSound;
 
@@ -38,7 +38,7 @@ public class MonsterWalk : MonoBehaviour
             if (velocity! < 0.5f)
             {
                 velocity += Time.deltaTime * acceleration * 7;
-                Debug.Log(velocity);
+                //Debug.Log(velocity);
                 isWalking = true;
                 isRunning = false;
             }
