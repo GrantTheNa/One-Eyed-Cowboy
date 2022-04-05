@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6009926805232934319}
   - component: {fileID: 9001883588341583786}
   - component: {fileID: 1722889713652249831}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -434,6 +434,7 @@ MonoBehaviour:
   isGrounded: 0
   isSprinting: 0
   isMovingOnGround: 0
+  pressedCrouch: 0
 --- !u!82 &4864587771702636314
 AudioSource:
   m_ObjectHideFlags: 0
@@ -547,7 +548,6 @@ MonoBehaviour:
   playerScript: {fileID: 5149395707934565551}
   acceleration: 0.1
   deceleration: 0.5
-  pressedCrouch: 0
 --- !u!1 &5149395708199731102
 GameObject:
   m_ObjectHideFlags: 0

@@ -33,7 +33,8 @@ public class Doors : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RaycastHit hit;
+
+                RaycastHit hit;
         // Sets layermask to default, ignores player and UI layermask for the raycast
         int layerMask = 1 << 7;
         // Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.forward * 3);
@@ -87,4 +88,15 @@ public class Doors : MonoBehaviour
         // Reduce cooldown timer
         timerTemp -= Time.deltaTime;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy" && !doorOpened)
+        {
+            doorAnimator.SetTrigger("opened");
+            doorOpened = true;
+            timerTemp = doorOpeningTime;
+        }
+    }
+
 }
