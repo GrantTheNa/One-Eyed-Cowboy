@@ -33,7 +33,7 @@ public class ItemInteraction : MonoBehaviour
     private void Highlight()
     {
         // Sets layermask to default, ignores player and UI layermask for the raycast
-        int layerMask = 1 << 0;
+        int layerMask = 1 << 7;
         RaycastHit hit;
         // Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.forward * grabDistance);
         // If raycast hits the item, item is highlighted
