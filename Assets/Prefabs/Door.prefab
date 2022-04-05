@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5785825772361387355}
   - component: {fileID: 5785825772361387354}
   - component: {fileID: 5785825772361387353}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DoorFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -564,7 +564,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5785825772862153725}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Door
   m_TagString: GameController
   m_Icon: {fileID: 0}
@@ -597,7 +597,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5785825773161724538}
   - component: {fileID: 5785825773161724539}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DoorPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
