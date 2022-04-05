@@ -10,6 +10,7 @@ public class Doors : MonoBehaviour
     private GameObject closeDoorText;
     private GameObject playerCamera;
     private Animator doorAnimator;
+    public Outline outline;
 
     // Variables that need to be set
     public float doorOpeningTime = 0.5f;
@@ -37,7 +38,6 @@ public class Doors : MonoBehaviour
         int layerMask = 1 << 7;
         // Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.forward * 3);
         // Sends a raycast 3 metres out from where the player is looking, checks if the raycast hits the door, and if the timer cooldown is not active
-        // This raycast does not seem to work properly for displaying text, as it flickers when moving, but there have been no problems with opening the door
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 3f, layerMask) == true && hit.collider.gameObject == door && timerTemp <= 0)
         {
             // Checks if the door is opened or closed to show appropiate text
@@ -52,6 +52,7 @@ public class Doors : MonoBehaviour
             }
 
             lookingAtDoor = true;
+            outline.enabled = true;
         }
         else
         {
@@ -63,6 +64,7 @@ public class Doors : MonoBehaviour
             }
 
             lookingAtDoor = false;
+            outline.enabled = false;
         }
 
         // Checks if player presses "E" on a closed door
