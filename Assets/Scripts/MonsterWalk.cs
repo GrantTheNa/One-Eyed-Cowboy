@@ -50,7 +50,7 @@ public class MonsterWalk : MonoBehaviour
             if (velocity! < 1f)
             {
                 velocity += Time.deltaTime * acceleration * 7;
-                Debug.Log(velocity);
+                //Debug.Log(velocity);
                 isWalking = true;
                 isRunning = true;
             }

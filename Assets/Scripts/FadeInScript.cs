@@ -14,10 +14,6 @@ public class FadeInScript : MonoBehaviour
     float alphaValue;
     float targetValue;
 
-    float full = 1;
-    float half = 0.5f;
-    float none = 0;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +27,6 @@ public class FadeInScript : MonoBehaviour
     void Update()
     {
         distance = Vector3.Distance(player.transform.position, enemy.transform.position);
-        Debug.Log(distance + "is how far the enemy is");
 
         if (distance >16)
         {

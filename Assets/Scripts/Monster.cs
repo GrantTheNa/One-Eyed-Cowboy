@@ -36,6 +36,11 @@ public class Monster : MonoBehaviour
     bool m_IsPatrol;
     bool m_CaughtPlayer;
 
+    //distracted
+    public bool distracted;
+    public Transform distractionPoint;
+    bool doOnce;
+
     Vector3 previous;
     public float velocity;
     
@@ -49,6 +54,7 @@ public class Monster : MonoBehaviour
         m_PlayerInRange = false;
         m_waitTime = startWaitTime;
         m_TimeToRotate = timeToRotate;
+        distracted = false;
 
         m_CurrentWaypointIndex = 0;
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -63,14 +69,19 @@ public class Monster : MonoBehaviour
     void Update()
     {
         EnvironmentView(); 
-        
+
         if(!m_IsPatrol)
         {
             Chasing();
+            Debug.Log("CHASING");
         }
         else
         {
-            Patroling();
+            //if ()
+            //{
+                Debug.Log("PATROL");
+                Patroling();
+            //}
         }
     }
 
@@ -80,9 +91,28 @@ public class Monster : MonoBehaviour
         velocity = ((transform.position - previous).magnitude) / Time.fixedDeltaTime;
         previous = transform.position;
 
-        print(velocity);
+        //print(velocity);
 
     }
+
+
+    //private void MoveToDistraction()
+    //{
+    //    //m_PlayerNear = false;
+    //    Move(speedWalk);
+
+    //    if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+    //    {
+    //        //m_waitTime = startWaitTime;
+    //        //m_TimeToRotate = timeToRotate;
+    //        Stop();
+    //        Debug.Log("Is No Longer Distracted");
+    //        distracted = false;
+    //        Debug.Log(distracted);
+    //        //Chasing();
+    //    }
+    //}
+
 
     private void Chasing()
     {
@@ -119,6 +149,7 @@ public class Monster : MonoBehaviour
     
     private void Patroling()
     {
+        Debug.Log(m_PlayerNear);
         if (m_PlayerNear)
         {
             if (m_TimeToRotate <= 0)
@@ -136,11 +167,21 @@ public class Monster : MonoBehaviour
         {
             m_PlayerNear = false;
             playerLastPosition = Vector3.zero;
-            navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
+
+            if (distracted)
+            {
+                navMeshAgent.SetDestination(distractionPoint.position);
+            }
+            else if (!distracted)
+            {
+                navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
+            }
+
             if(navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
             {
                 if(m_waitTime <= 0)
                 {
+                    distracted = false;
                     NextPoint();
                     Move(speedWalk);
                     m_waitTime = startWaitTime;
@@ -157,18 +198,21 @@ public class Monster : MonoBehaviour
 
         void Move(float speed)
         {
+            Debug.Log("Move");
             navMeshAgent.isStopped = false;
             navMeshAgent.speed = speed;
         }
 
         void Stop()
         {
+            Debug.Log("Stop");
             navMeshAgent.isStopped = true;
             navMeshAgent.speed = 0;
         }
 
         public void NextPoint()
         {
+            Debug.Log("NextPoint");
             m_CurrentWaypointIndex = (m_CurrentWaypointIndex + 1) % waypoints.Length;
             navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
         }
@@ -180,6 +224,7 @@ public class Monster : MonoBehaviour
 
         void LookingPlayer(Vector3 player)
         {
+            Debug.Log("LookingPlayer");
             navMeshAgent.SetDestination(player);
             if (Vector3.Distance(transform.position, player) <= 0.3)
             {
@@ -201,6 +246,7 @@ public class Monster : MonoBehaviour
 
         void EnvironmentView()
         {
+            Debug.Log("EnvironmentView");
             Collider[] playerInRange = Physics.OverlapSphere(transform.position, viewRadius, playerMask);
             
 
