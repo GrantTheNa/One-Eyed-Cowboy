@@ -215,6 +215,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1497519621154122312, guid: f6e6968eb06859b4caadbf9f742f546c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 84.6001
+      objectReference: {fileID: 0}
     - target: {fileID: 2002479169710178195, guid: f6e6968eb06859b4caadbf9f742f546c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1075,6 +1079,10 @@ PrefabInstance:
     - target: {fileID: 7921116622562485305, guid: 4666469daa0766c44a929d39189e4278, type: 3}
       propertyPath: m_Name
       value: Wooden_Crate 1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7921116622562485305, guid: 4666469daa0766c44a929d39189e4278, type: 3}
+      propertyPath: m_TagString
+      value: Item
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4666469daa0766c44a929d39189e4278, type: 3}
