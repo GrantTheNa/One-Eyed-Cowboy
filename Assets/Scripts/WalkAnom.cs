@@ -56,7 +56,7 @@ public class WalkAnom : MonoBehaviour
         IEnumerator WalkSound()
         {
             playingSound = true;
-            GetComponent<AudioSource>().Play();
+            FoodStepRock();
             yield return new WaitForSeconds(0.5f);
             playingSound = false;
         }
@@ -64,7 +64,7 @@ public class WalkAnom : MonoBehaviour
         IEnumerator SprintSound()
         {
             playingSound = true;
-            GetComponent<AudioSource>().Play();
+            FoodStepRock();
             yield return new WaitForSeconds(0.33333333333f);
             playingSound = false;
         }
@@ -112,6 +112,27 @@ public class WalkAnom : MonoBehaviour
         {
             animator.SetBool("Crouch", false);
             shadow.SetBool("Crouch", false);
+        }
+    }
+
+    private void FoodStepRock()
+    {
+        float randomNumber = Random.Range(1, 5);
+        if (randomNumber == 1)
+        {
+            FindObjectOfType<MasterAudioManager>().Play("Footstep_Rock_Walk_01");
+        }
+        else if (randomNumber == 2)
+        {
+            FindObjectOfType<MasterAudioManager>().Play("Footstep_Rock_Walk_02");
+        }
+        else if (randomNumber == 3)
+        {
+            FindObjectOfType<MasterAudioManager>().Play("Footstep_Rock_Walk_03");
+        }
+        else if (randomNumber == 4)
+        {
+            FindObjectOfType<MasterAudioManager>().Play("Footstep_Rock_Walk_04");
         }
     }
 }
