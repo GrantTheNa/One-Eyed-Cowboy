@@ -10,6 +10,7 @@ public class FadeInScript : MonoBehaviour
     public GameObject enemy;
 
     public float distance;
+    public float distancePercent;
 
     public float closestMonsterDistance = 4;
     public float furthestMonsterDistance = 16;
@@ -32,7 +33,7 @@ public class FadeInScript : MonoBehaviour
 
         // Determines how close the monster is as a percentage based on minimun and maximum distances given.
         // Using this is more accurate than the previous targetValue code, and more adjustable
-        float distancePercent = 1 - (distance - closestMonsterDistance) / (furthestMonsterDistance - closestMonsterDistance);
+        distancePercent = 1 - (distance - closestMonsterDistance) / (furthestMonsterDistance - closestMonsterDistance);
         if (distancePercent < 0) {distancePercent = 0;}
         else if (distancePercent > 1) {distancePercent = 1;}
         //Debug.Log(distancePercent);

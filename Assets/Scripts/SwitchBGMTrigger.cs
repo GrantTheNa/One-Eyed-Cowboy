@@ -14,7 +14,7 @@ public class SwitchBGMTrigger : MonoBehaviour
     private GameObject monsterGameObject;
     private Monster monsterScript;
 
-    bool chasedOST;
+    bool chasedOST = false;
 
 
     // Start is called before the first frame update
@@ -44,11 +44,11 @@ public class SwitchBGMTrigger : MonoBehaviour
 
         if (!chasedOST)
         {
-            if (theme.distance > 20)
+            if (theme.distancePercent == 0)
             {
                 theAM.Silence();
             }
-            if (theme.distance <= 16)
+            else
             {
                 theAM.FadeIn();
                 theAM.Play();
