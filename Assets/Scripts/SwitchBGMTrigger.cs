@@ -5,7 +5,7 @@ public class SwitchBGMTrigger : MonoBehaviour
 {
     public AudioClip Ambient;
     public AudioClip Closeby;
-    public AudioClip Touch;
+    public AudioClip Chase;
 
     private AudioManager theAM;
 
@@ -33,7 +33,7 @@ public class SwitchBGMTrigger : MonoBehaviour
         {
             chasedOST = true;
             theAM.Play();
-            theAM.ChangeBGM(Touch);
+            theAM.ChangeBGM(Chase);
             theAM.FadeIn();
         }
         else if (!monsterScript.foundPlayer && chasedOST)
@@ -44,6 +44,7 @@ public class SwitchBGMTrigger : MonoBehaviour
 
         if (!chasedOST)
         {
+            // at percent 0, the player is outside of the monster range
             if (theme.distancePercent == 0)
             {
                 theAM.Silence();
@@ -55,9 +56,7 @@ public class SwitchBGMTrigger : MonoBehaviour
                 theAM.ChangeBGM(Closeby);
             }
         }
-
     }
-
 
     public void ChasedOSTDelay()
     {
