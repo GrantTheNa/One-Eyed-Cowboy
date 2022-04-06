@@ -9,7 +9,7 @@ public class FadeInScript : MonoBehaviour
     public GameObject player;
     public GameObject enemy;
 
-    float distance;
+    public float distance;
 
     float alphaValue;
     float targetValue;
@@ -32,11 +32,11 @@ public class FadeInScript : MonoBehaviour
         {
             targetValue = 0;
         }
-        else if (distance <16 && distance >8)
+        else if (distance <16 && distance >12)
         {
             targetValue = 0.3f;
         }
-        else if (distance < 8 && distance > 4)
+        else if (distance < 12 && distance > 4)
         {
             targetValue = 0.75f;
         }

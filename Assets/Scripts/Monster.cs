@@ -45,6 +45,8 @@ public class Monster : MonoBehaviour
     Vector3 previous;
     public float velocity;
 
+    public bool foundPlayer;
+
 
     
 
@@ -143,6 +145,8 @@ public class Monster : MonoBehaviour
                 if (Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position)>= 2.5f)
                 {
                     Stop();
+                    Debug.Log("LostPlayer");
+                    foundPlayer = false;
                     m_waitTime -= Time.deltaTime;
                 }
             }
@@ -266,6 +270,7 @@ public class Monster : MonoBehaviour
                    if (!Physics.Raycast(transform.position, dirToPlayer, dstToPlayer, obstacleMask))
                     {
                         m_PlayerInRange = true;
+                        foundPlayer = true;
                         m_IsPatrol = false;
 
                     }
