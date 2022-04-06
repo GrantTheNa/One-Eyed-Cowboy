@@ -9,16 +9,15 @@ public class AudioManager : MonoBehaviour
 
     public AudioSource HowlingWind;
 
-    // Start is called before the first frame update
-    void Start()
+    public void ChangeWindBGM(AudioClip music)
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        float clipLength = HowlingWind.time;
+        if (HowlingWind.clip.name == music.name)
+            return;
+        HowlingWind.Stop();
+        HowlingWind.clip = music;
+        HowlingWind.Play();
+        HowlingWind.time = clipLength;
     }
 
     public void ChangeBGM(AudioClip music)
