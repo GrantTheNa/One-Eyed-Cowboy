@@ -285,12 +285,24 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 505501301600356291, guid: 66804a140a2bc3149b70135994200626, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 505501301600356291, guid: 66804a140a2bc3149b70135994200626, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 505501301600356291, guid: 66804a140a2bc3149b70135994200626, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 505501301600356291, guid: 66804a140a2bc3149b70135994200626, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.889925
       objectReference: {fileID: 0}
     - target: {fileID: 505501301600356291, guid: 66804a140a2bc3149b70135994200626, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 18.321186
+      value: 11.72
       objectReference: {fileID: 0}
     - target: {fileID: 505501301600356291, guid: 66804a140a2bc3149b70135994200626, type: 3}
       propertyPath: m_LocalPosition.z
@@ -328,6 +340,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: WaterTower 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6858707978007736660, guid: 66804a140a2bc3149b70135994200626, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 630a1b8a43b44d9459ceea75c87bb9e2, type: 2}
+    - target: {fileID: 6858707978007736660, guid: 66804a140a2bc3149b70135994200626, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 630a1b8a43b44d9459ceea75c87bb9e2, type: 2}
+    - target: {fileID: 6858707978007736660, guid: 66804a140a2bc3149b70135994200626, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 630a1b8a43b44d9459ceea75c87bb9e2, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66804a140a2bc3149b70135994200626, type: 3}
 --- !u!1001 &657541650
@@ -430,7 +454,7 @@ Transform:
   m_Children:
   - {fileID: 1874011156}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &966196158
 PrefabInstance:
@@ -640,7 +664,7 @@ Transform:
   m_LocalScale: {x: 18.958033, y: 4.151, z: 17.859676}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1610737698
 PrefabInstance:
@@ -651,7 +675,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3615845188372283033, guid: a769addce2ca02245a7d574a92371a9f, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3615845188372283033, guid: a769addce2ca02245a7d574a92371a9f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -699,63 +723,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a769addce2ca02245a7d574a92371a9f, type: 3}
---- !u!1001 &1694270657
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 843d2764c7087f64b91d8c7378d09e3e, type: 3}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 843d2764c7087f64b91d8c7378d09e3e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 20.795479
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 843d2764c7087f64b91d8c7378d09e3e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.0000038146973
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 843d2764c7087f64b91d8c7378d09e3e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 6.138775
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 843d2764c7087f64b91d8c7378d09e3e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 843d2764c7087f64b91d8c7378d09e3e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 843d2764c7087f64b91d8c7378d09e3e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 843d2764c7087f64b91d8c7378d09e3e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 843d2764c7087f64b91d8c7378d09e3e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 843d2764c7087f64b91d8c7378d09e3e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 843d2764c7087f64b91d8c7378d09e3e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 843d2764c7087f64b91d8c7378d09e3e, type: 3}
-      propertyPath: m_Name
-      value: WoodenWheelyChair
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 843d2764c7087f64b91d8c7378d09e3e, type: 3}
 --- !u!1 &1874011155
 GameObject:
   m_ObjectHideFlags: 0
