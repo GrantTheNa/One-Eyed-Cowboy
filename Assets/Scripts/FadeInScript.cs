@@ -10,9 +10,12 @@ public class FadeInScript : MonoBehaviour
     public GameObject enemy;
 
     public float distance;
+    public float distancePercent;
+
+    public float closestMonsterDistance = 4;
+    public float furthestMonsterDistance = 16;
 
     float alphaValue;
-    float targetValue;
 
     // Start is called before the first frame update
     void Start()
@@ -28,25 +31,14 @@ public class FadeInScript : MonoBehaviour
     {
         distance = Vector3.Distance(player.transform.position, enemy.transform.position);
 
-        if (distance >16)
-        {
-            targetValue = 0;
-        }
-        else if (distance <16 && distance >12)
-        {
-            targetValue = 0.3f;
-        }
-        else if (distance < 12 && distance > 4)
-        {
-            targetValue = 0.75f;
-        }
-        else if (distance <4)
-        {
-            targetValue = 1;
-        }
+        // Determines how close the monster is as a percentage based on minimun and maximum distances given.
+        // Using this is more accurate than the previous targetValue code, and more adjustable
+        distancePercent = 1 - (distance - closestMonsterDistance) / (furthestMonsterDistance - closestMonsterDistance);
+        if (distancePercent < 0) {distancePercent = 0;}
+        else if (distancePercent > 1) {distancePercent = 1;}
+        //Debug.Log(distancePercent);
 
-
-        float delta = targetValue - alphaValue;
+        float delta = distancePercent - alphaValue;
         delta *= Time.deltaTime;
 
         alphaValue += delta;
