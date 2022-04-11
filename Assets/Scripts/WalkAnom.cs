@@ -9,6 +9,9 @@ public class WalkAnom : MonoBehaviour
 
     public FirstPersonController playerScript;
 
+    public FeetCollider feetScript;
+
+
     float velocity = 0.0f;
     public float acceleration = 0.01f;
     public float deceleration = 0.05f;
@@ -56,7 +59,7 @@ public class WalkAnom : MonoBehaviour
         IEnumerator WalkSound()
         {
             playingSound = true;
-            FoodStepRock();
+            CheckSteps();
             yield return new WaitForSeconds(0.5f);
             playingSound = false;
         }
@@ -64,7 +67,7 @@ public class WalkAnom : MonoBehaviour
         IEnumerator SprintSound()
         {
             playingSound = true;
-            FoodStepRock();
+            CheckSteps();
             yield return new WaitForSeconds(0.33333333333f);
             playingSound = false;
         }
@@ -115,7 +118,19 @@ public class WalkAnom : MonoBehaviour
         }
     }
 
-    private void FoodStepRock()
+    private void CheckSteps()
+    {
+        if (feetScript.woodF)
+        {
+            FootStepWood();
+        }
+        else
+        {
+            FootStepRock();
+        }
+    }
+
+    private void FootStepRock()
     {
         float randomNumber = Random.Range(1, 5);
         if (randomNumber == 1)
@@ -133,6 +148,27 @@ public class WalkAnom : MonoBehaviour
         else if (randomNumber == 4)
         {
             FindObjectOfType<MasterAudioManager>().Play("Footstep_Rock_Walk_04");
+        }
+    }
+
+    private void FootStepWood()
+    {
+        float randomNumber = Random.Range(1, 5);
+        if (randomNumber == 1)
+        {
+            FindObjectOfType<MasterAudioManager>().Play("Footstep_Wood_Walk_01");
+        }
+        else if (randomNumber == 2)
+        {
+            FindObjectOfType<MasterAudioManager>().Play("Footstep_Wood_Walk_02");
+        }
+        else if (randomNumber == 3)
+        {
+            FindObjectOfType<MasterAudioManager>().Play("Footstep_Wood_Walk_03");
+        }
+        else if (randomNumber == 4)
+        {
+            FindObjectOfType<MasterAudioManager>().Play("Footstep_Wood_Walk_04");
         }
     }
 }

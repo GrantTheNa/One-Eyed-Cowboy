@@ -74,3 +74,27 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: Footstep_Wood_Walk_01
+    clip: {fileID: 8300000, guid: 8e001351cd7065543a068386cde4c960, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Footstep_Wood_Walk_02
+    clip: {fileID: 8300000, guid: c41fb169b2991c247a5466e00faa6639, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Footstep_Wood_Walk_03
+    clip: {fileID: 8300000, guid: 76c66b3ae15685a45a334b0628d1edd1, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Footstep_Wood_Walk_04
+    clip: {fileID: 8300000, guid: cb9aa4db4b3a12147bf2fe3d88fee270, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
