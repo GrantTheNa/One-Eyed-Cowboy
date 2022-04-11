@@ -9,6 +9,8 @@ public class AudioManager : MonoBehaviour
 
     public AudioSource HowlingWind;
 
+    public float maxBGMVol = 0.5f;
+
     public void ChangeWindBGM(AudioClip music)
     {
         float clipLength = HowlingWind.time;
@@ -71,7 +73,7 @@ public class AudioManager : MonoBehaviour
     {
         float startVolume = BGM.volume + 0.01f;
 
-        while (BGM.volume < 1.0f)
+        while (BGM.volume < maxBGMVol || BGM.volume <= maxBGMVol - 0.05f)
         {
             BGM.volume += startVolume * Time.deltaTime / 100;
 

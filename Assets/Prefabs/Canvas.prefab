@@ -1114,6 +1114,9 @@ MonoBehaviour:
   player: {fileID: 0}
   enemy: {fileID: 0}
   distance: 0
+  distancePercent: 0
+  closestMonsterDistance: 4
+  furthestMonsterDistance: 16
 --- !u!114 &5614988425685280273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1128,7 +1131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Ambient: {fileID: 8300000, guid: c25cec32f5a24564fb0ad402a8f8773c, type: 3}
   Closeby: {fileID: 8300000, guid: a6f78e08a8e479042b7e6a3cdbc62669, type: 3}
-  Touch: {fileID: 8300000, guid: a8a5951b76f8d424bbc7ae674d9c4a06, type: 3}
+  Chase: {fileID: 8300000, guid: a8a5951b76f8d424bbc7ae674d9c4a06, type: 3}
 --- !u!114 &5018903719190236546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1861,6 +1864,8 @@ MonoBehaviour:
   ySpeedText: {fileID: 7321734313230510016}
   zSpeedText: {fileID: 7321734313796051376}
   isGroundedText: {fileID: 7321734313620519991}
+  monsterModel: {fileID: 0}
+  monsterOutline: {fileID: 0}
   xSpeed: 0
   ySpeed: 0
   zSpeed: 0
