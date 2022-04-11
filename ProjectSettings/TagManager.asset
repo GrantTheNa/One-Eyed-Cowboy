@@ -9,6 +9,7 @@ TagManager:
   - Plank
   - Enemy
   - Thrown
+  - WoodF
   layers:
   - Default
   - TransparentFX

@@ -449,6 +449,8 @@ MonoBehaviour:
   animator: {fileID: 5149395708139962676}
   shadow: {fileID: 3122104030833285029}
   playerScript: {fileID: 5149395707934565551}
+  feetScript: {fileID: 5149395708199731101}
+  feetScriptHolder: {fileID: 0}
   acceleration: 0.1
   deceleration: 0.5
 --- !u!1 &5149395708199731102
@@ -578,6 +580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGrounded: 0
+  woodF: 0
 --- !u!1 &5513713623039951003
 GameObject:
   m_ObjectHideFlags: 0
