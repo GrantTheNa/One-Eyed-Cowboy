@@ -7,6 +7,7 @@ public class WoodenPlankScript : MonoBehaviour
     // Variables that need assigning
     public GameObject plank;
     public GameObject playerCamera;
+    public FirstPersonController firstPersonController;
 
     // Variables that need adjusting
     public float grabDistance = 2;
@@ -23,6 +24,7 @@ public class WoodenPlankScript : MonoBehaviour
         // Assigning Variables
         playerCamera = GameObject.Find("First Person Camera");
         woodTrigger = GameObject.Find("WoodTrigger");
+        firstPersonController = GameObject.FindObjectOfType<FirstPersonController>();
     }
     public void Update()
     {
@@ -64,6 +66,7 @@ public class WoodenPlankScript : MonoBehaviour
         if (isHolding == true && Input.GetMouseButtonDown(0) == true || plankPositionTrigger == true)
         {
             isHolding = false;
+            firstPersonController.holdingWood = false;
         }
         // Checks for picking up an object
         else if (highlighted == true && Input.GetMouseButtonDown(0) == true)
@@ -72,6 +75,7 @@ public class WoodenPlankScript : MonoBehaviour
             plank.transform.SetParent(playerCamera.transform);
             plank.transform.position = woodTrigger.transform.position;
             plank.transform.rotation = woodTrigger.transform.rotation;
+            firstPersonController.holdingWood = true;
         }
 
     }
