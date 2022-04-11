@@ -17,6 +17,7 @@ public class FirstPersonController : MonoBehaviour
     // Variables that need adjusting
     public float movementSpeed = 10;
     public float crouchSpeedMultiplier = 0.4f;
+    public float woodSpeedMultiplier = 0.5f;
     public float mouseSensitivity = 2;
     public float jumpHeight = 2;
     public float fallSpeed = 5;
@@ -28,7 +29,7 @@ public class FirstPersonController : MonoBehaviour
 
     // Variables that need accessing
     public float xSpeed, ySpeed, zSpeed;
-    public bool isGrounded, isSprinting, isMovingOnGround, pressedCrouch;
+    public bool isGrounded, isSprinting, isMovingOnGround, pressedCrouch, holdingWood;
 
     // Private Variables
     private float mouseX, mouseY, stepOffset, speedMultiplier, stamina, staminaCooldown;
@@ -94,6 +95,11 @@ public class FirstPersonController : MonoBehaviour
         }
 
         FirstPersonCamera();
+        if (holdingWood == true)
+        {
+            speedMultiplier *= woodSpeedMultiplier;
+        }
+
         HorizontalMovement();
         VerticalMovement();
         Movement();

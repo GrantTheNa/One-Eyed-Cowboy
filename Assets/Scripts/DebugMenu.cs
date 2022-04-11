@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering;
 
 public class DebugMenu : MonoBehaviour
 {
     // Variables that need assigning
     public GameObject debugMenu;
     public Text xSpeedText, ySpeedText, zSpeedText, isGroundedText;
+    public SkinnedMeshRenderer monsterModel;
+    public Outline monsterOutline;
 
     // Variables that need to be accessed
     public float xSpeed, ySpeed, zSpeed;
@@ -20,6 +23,8 @@ public class DebugMenu : MonoBehaviour
     private void Start()
     {
         menuActive = false;
+        monsterModel = GameObject.Find("ShadowModel").GetComponent<SkinnedMeshRenderer>();
+        monsterOutline = GameObject.Find("ShadowModel").GetComponent<Outline>();
     }
 
     void Update()
@@ -35,11 +40,15 @@ public class DebugMenu : MonoBehaviour
         if (menuActive == true)
         {
             debugMenu.SetActive(true);
+            monsterModel.shadowCastingMode = ShadowCastingMode.On;
+            monsterOutline.enabled = true;
         }
         // Turns it off
         else
         {
             debugMenu.SetActive(false);
+            monsterModel.shadowCastingMode = ShadowCastingMode.ShadowsOnly;
+            monsterOutline.enabled = false;
         }
 
         // Updates debug values if on. Values are sent through the controller script
