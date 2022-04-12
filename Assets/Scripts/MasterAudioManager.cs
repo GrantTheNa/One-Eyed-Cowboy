@@ -11,6 +11,8 @@ public class MasterAudioManager : MonoBehaviour
 
     public static MasterAudioManager instance;
 
+    public AudioSource Audio3D;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -49,4 +51,17 @@ public class MasterAudioManager : MonoBehaviour
         s.source.Play();
     }
 
+    public void Play3D(string name, Transform transform, GameObject prefab)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        // Error given if name isn't found
+        if (s == null)
+        {
+            Debug.LogWarning("Sound (" + name + ") not found. Did you misspell something?");
+            return;
+        }
+        Audio3D.clip = s.clip;
+        Instantiate(prefab, transform);
+
+    }
 }

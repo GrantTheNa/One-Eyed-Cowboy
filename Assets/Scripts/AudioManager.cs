@@ -9,7 +9,7 @@ public class AudioManager : MonoBehaviour
 
     public AudioSource HowlingWind;
 
-    public float maxBGMVol = 0.5f;
+    public float maxBGMVol = 0.1f;
 
     public void ChangeWindBGM(AudioClip music)
     {
