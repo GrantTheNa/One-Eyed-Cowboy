@@ -23,8 +23,13 @@ public class DebugMenu : MonoBehaviour
     private void Start()
     {
         menuActive = false;
-        monsterModel = GameObject.Find("ShadowModel").GetComponent<SkinnedMeshRenderer>();
-        monsterOutline = GameObject.Find("ShadowModel").GetComponent<Outline>();
+        monsterModel = GameObject.Find("Enemy/ShadowNew/ShadowModel").GetComponent<SkinnedMeshRenderer>();
+        monsterOutline = GameObject.Find("Enemy/ShadowNew/ShadowModel").GetComponent<Outline>();
+        // Gives a warning if no monster is found in scene
+        if (monsterModel == null || monsterOutline == null)
+        {
+            Debug.LogWarning("Debug menu did not find the monster in the scene. Is the monster named 'Enemy'?");
+        }
     }
 
     void Update()
@@ -40,15 +45,23 @@ public class DebugMenu : MonoBehaviour
         if (menuActive == true)
         {
             debugMenu.SetActive(true);
-            monsterModel.shadowCastingMode = ShadowCastingMode.On;
-            monsterOutline.enabled = true;
+            if (monsterModel != null && monsterOutline != null)
+            {
+                monsterModel.shadowCastingMode = ShadowCastingMode.On;
+                monsterOutline.enabled = true;
+            }
+
         }
         // Turns it off
         else
         {
             debugMenu.SetActive(false);
-            monsterModel.shadowCastingMode = ShadowCastingMode.ShadowsOnly;
-            monsterOutline.enabled = false;
+            if (monsterModel != null && monsterOutline != null)
+            {
+                monsterModel.shadowCastingMode = ShadowCastingMode.ShadowsOnly;
+                monsterOutline.enabled = false;
+            }
+
         }
 
         // Updates debug values if on. Values are sent through the controller script
