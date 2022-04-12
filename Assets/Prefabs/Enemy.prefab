@@ -199,6 +199,8 @@ MonoBehaviour:
   deceleration: 0.1
   pressedCrouch: 0
   isWalking: 0
+  prefab: {fileID: 6077173541491334653, guid: 7269a9f67dfbe4c44884a819364ba7b5, type: 3}
+  monster: {fileID: 2375350539008288716}
 --- !u!82 &6940539332312644972
 AudioSource:
   m_ObjectHideFlags: 0

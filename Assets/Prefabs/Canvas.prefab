@@ -1146,6 +1146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BGM: {fileID: 1299562244400310747}
   HowlingWind: {fileID: 2818510599235581031}
+  maxBGMVol: 0.3
 --- !u!1 &5407052776991715871
 GameObject:
   m_ObjectHideFlags: 0
