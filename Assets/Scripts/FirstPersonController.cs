@@ -18,6 +18,7 @@ public class FirstPersonController : MonoBehaviour
     public float movementSpeed = 10;
     public float crouchSpeedMultiplier = 0.4f;
     public float woodSpeedMultiplier = 0.5f;
+    public float backwardsSpeedMultiplier = 0.75f;
     public float mouseSensitivity = 2;
     public float jumpHeight = 2;
     public float fallSpeed = 5;
@@ -147,6 +148,12 @@ public class FirstPersonController : MonoBehaviour
 
         xSpeed = xSpeed * speedMultiplier;
         zSpeed = zSpeed * speedMultiplier;
+
+        // Detects if player is running backwards, and slows their speed down
+        if(zSpeed < 0)
+        {
+            zSpeed *= backwardsSpeedMultiplier;
+        }
 
         // Checks if both horizontal and vertical movement is active
         if (Input.GetAxis("Horizontal") != 0 && Input.GetAxis("Vertical") != 0)
