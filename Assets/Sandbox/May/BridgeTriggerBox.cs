@@ -8,11 +8,14 @@ public class BridgeTriggerBox : MonoBehaviour
     public GameObject triggerBox;
     public BridgeScript bridgeScript;
 
+    public GameObject woodenPlankBridge;
+
     public void Start()
     {
         triggerBox = GameObject.Find("BridgeTrigger");
         bridgeScript = FindObjectOfType<BridgeScript>();
         fpsScript = FindObjectOfType<FirstPersonController>();
+        woodenPlankBridge.SetActive(false);
     }
     public void OnTriggerEnter(Collider collider)
     {
@@ -23,6 +26,7 @@ public class BridgeTriggerBox : MonoBehaviour
             bridgeScript.woodCount++;
             Destroy(this.gameObject);
             fpsScript.holdingWood = false;
+            woodenPlankBridge.SetActive(true);
         }
     }
 
