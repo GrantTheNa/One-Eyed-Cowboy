@@ -804,7 +804,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4611476503926420407
 RectTransform:
   m_ObjectHideFlags: 0
@@ -876,6 +876,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   enemy: {fileID: 0}
+  enemyModel: {fileID: 0}
   distance: 0
   distancePercent: 0
   closestMonsterDistance: 4
