@@ -38,7 +38,7 @@ public class MonsterShowSelfScript : MonoBehaviour
         float a = A_Trans; //Alpha
         a = 0;
         mat.color = new Color(0, 0, 0, a);
-        while (mat.color.a <= 0.4f && playerIn)
+        while (mat.color.a <= A_Trans && playerIn)
         {
             a = a + 0.3f * Time.deltaTime;
             mat.color = new Color(0, 0, 0, a);
@@ -49,7 +49,7 @@ public class MonsterShowSelfScript : MonoBehaviour
     IEnumerator MaterialFadeOut()
     {
         float a = A_Trans; //Alpha
-        a = 0.4f;
+        a = A_Trans;
         mat.color = new Color(0, 0, 0, a);
         while (mat.color.a >= 0f && !playerIn)
         {

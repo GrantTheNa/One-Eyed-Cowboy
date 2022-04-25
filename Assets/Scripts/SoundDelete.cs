@@ -12,7 +12,7 @@ public class SoundDelete : MonoBehaviour
     private void Awake()
     {
         soundTimer = sound.clip.length;
-        Debug.Log(soundTimer);
+        //Debug.Log(soundTimer);
         PlaySound();
     }
 
