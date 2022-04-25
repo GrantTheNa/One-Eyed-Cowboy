@@ -636,6 +636,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterModel: {fileID: 5520030970297021172}
+  mat: {fileID: 2100000, guid: 9c082e4a380de324d83d6c601ab1b3b7, type: 2}
 --- !u!65 &2484525264250063779
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -44,6 +44,8 @@ public class FadeInScript : MonoBehaviour
         alphaValue += delta;
 
         sprite.color = new Color(1, 0, 0, alphaValue);
+
+        Debug.Log(alphaValue);
     }
 
 }
