@@ -5,17 +5,15 @@ using UnityEngine;
 public class BridgeTriggerBox : MonoBehaviour
 {
     public FirstPersonController fpsScript;
-    public GameObject triggerBox;
-    public BridgeScript bridgeScript;
 
     public GameObject woodenPlankBridge;
+    [SerializeField] private GameObject invisWall;
 
     public void Start()
     {
-        triggerBox = GameObject.Find("BridgeTrigger");
-        bridgeScript = FindObjectOfType<BridgeScript>();
         fpsScript = FindObjectOfType<FirstPersonController>();
         woodenPlankBridge.SetActive(false);
+        invisWall = this.transform.Find("InvisWall").gameObject;
     }
     public void OnTriggerEnter(Collider collider)
     {
@@ -23,7 +21,6 @@ public class BridgeTriggerBox : MonoBehaviour
         {
             Debug.Log("Plank entered trigger");
             Destroy(collider.gameObject);
-            bridgeScript.woodCount++;
             Destroy(this.gameObject);
             fpsScript.holdingWood = false;
             woodenPlankBridge.SetActive(true);
