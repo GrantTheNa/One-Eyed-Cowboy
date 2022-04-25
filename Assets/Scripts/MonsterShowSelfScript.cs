@@ -40,7 +40,7 @@ public class MonsterShowSelfScript : MonoBehaviour
         mat.color = new Color(0, 0, 0, a);
         while (mat.color.a <= 0.4f && playerIn)
         {
-            a = a + 0.001f;
+            a = a + 0.3f * Time.deltaTime;
             mat.color = new Color(0, 0, 0, a);
             yield return null; 
         }
@@ -53,7 +53,7 @@ public class MonsterShowSelfScript : MonoBehaviour
         mat.color = new Color(0, 0, 0, a);
         while (mat.color.a >= 0f && !playerIn)
         {
-            a = a - 0.001f;
+            a = a - 0.3f * Time.deltaTime;
             mat.color = new Color(0, 0, 0, a);
             yield return null;
         }
