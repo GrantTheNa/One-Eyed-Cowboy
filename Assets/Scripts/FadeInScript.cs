@@ -77,7 +77,7 @@ public class FadeInScript : MonoBehaviour
 
         float _floatDirection = test.localRotation.z;
 
-        Debug.Log(_floatDirection);
+        //Debug.Log(_floatDirection);
 
 
         //Setting Up the direction of FADE WILL BE FIXED
@@ -85,6 +85,7 @@ public class FadeInScript : MonoBehaviour
 
         if (_floatDirection >= 0.7f)
         {
+            Debug.Log("Front");
             fadeMode = 1;
             StartCoroutine(FadeFront());
             StartCoroutine(DefadeLeft());
@@ -94,6 +95,7 @@ public class FadeInScript : MonoBehaviour
         }
         else if (_floatDirection <= 0.7 && _floatDirection >= 0.3)
         {
+            Debug.Log("Left");
             fadeMode = 2;
             StartCoroutine(FadeLeft());
             StartCoroutine(DefadeLeft());
@@ -103,6 +105,7 @@ public class FadeInScript : MonoBehaviour
         }
         else if (_floatDirection <= 0.3 && _floatDirection >= -0.3)
         {
+            Debug.Log("Back");
             fadeMode = 3;
             StartCoroutine(FadeBack());
             StartCoroutine(DefadeLeft());
@@ -113,6 +116,7 @@ public class FadeInScript : MonoBehaviour
         }
         else if (_floatDirection >= -0.8 && _floatDirection <= -0.3)
         {
+            Debug.Log("Right");
             fadeMode = 4;
             StartCoroutine(FadeRight());
             StartCoroutine(DefadeLeft());
