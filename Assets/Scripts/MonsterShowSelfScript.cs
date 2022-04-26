@@ -10,6 +10,13 @@ public class MonsterShowSelfScript : MonoBehaviour
     public float A_Trans = 0.4f;
     private bool playerIn;
 
+    private void Start()
+    {
+        StartCoroutine(MaterialFadeOut());
+
+    }
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")

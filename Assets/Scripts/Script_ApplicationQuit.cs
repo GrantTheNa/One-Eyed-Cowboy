@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 public class Script_ApplicationQuit : MonoBehaviour
 {
 
+    public bool win;
+
     private void Start()
     {
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
     }
 
 
@@ -16,14 +18,32 @@ public class Script_ApplicationQuit : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("Appy Quit");
-            Application.Quit();
+            if (win)
+            {
+                SceneManager.LoadScene(2);
+            }
+            else
+            {
+                Debug.Log("Appy Quit");
+                Application.Quit();
+            }
+
         }
     }
 
     public void PlayGame()
     {
         SceneManager.LoadScene(1);
+    }
+
+    public void Title()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void Win()
+    {
+        SceneManager.LoadScene(2);
     }
 
 }
