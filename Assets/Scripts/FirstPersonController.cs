@@ -15,6 +15,7 @@ public class FirstPersonController : MonoBehaviour
     public Slider rightStaminaSlider;
     public GameObject leftMouseButton;
     public GameObject rightMouseButton;
+    public Material window; //Window Suggestion
 
     // Variables that need adjusting
     public float movementSpeed = 10;
@@ -32,7 +33,7 @@ public class FirstPersonController : MonoBehaviour
 
     // Variables that need accessing
     public float xSpeed, ySpeed, zSpeed;
-    public bool isGrounded, isSprinting, isMovingOnGround, pressedCrouch, holdingWood, isHolding;
+    public bool isGrounded, isSprinting, isMovingOnGround, pressedCrouch, holdingWood, isHolding, windowFlash;
 
     // Private Variables
     private float mouseX, mouseY, stepOffset, speedMultiplier, stamina, staminaCooldown;
@@ -63,6 +64,8 @@ public class FirstPersonController : MonoBehaviour
         // Sets mouse control images
         leftMouseButton = GameObject.Find("MouseLeftClick");
         rightMouseButton = GameObject.Find("MouseRightClick");
+
+        window.SetColor("_EmissionColor", new Color(0, 0, 0));
     }
 
     // Update is called once per frame
@@ -315,11 +318,40 @@ public class FirstPersonController : MonoBehaviour
 
         if (isHolding == true)
         {
+            windowFlash = true;
+            StartCoroutine(WindowFade());
             rightMouseButton.SetActive(true);
         }
         else
         {
+            window.SetColor("_EmissionColor", new Color(0, 0, 0));
+            windowFlash = false;
             rightMouseButton.SetActive(false);
+        }
+    }
+
+    IEnumerator WindowFade()
+    {
+        float flash = 0f;
+        bool doOnce = true;
+        while (windowFlash && doOnce)
+        {
+            while (flash <= 0.3f && windowFlash)
+            {
+                doOnce = false;
+                flash = flash + 0.1f * 3 * Time.deltaTime;
+                Debug.Log("Flash");
+                window.SetColor("_EmissionColor", new Color(flash, flash, 0));
+                yield return null;
+            }
+            while (flash >= 0 && windowFlash)
+            {
+                flash = flash - 0.1f * 3 * Time.deltaTime;
+                Debug.Log("DeFlash");
+                window.SetColor("_EmissionColor", new Color(flash, flash, 0));
+                doOnce = true;
+                yield return null;
+            }
         }
     }
 }

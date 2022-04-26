@@ -77,7 +77,7 @@ public class FadeInScript : MonoBehaviour
 
         float _floatDirection = test.localRotation.z;
 
-        //Debug.Log(_floatDirection);
+        Debug.Log(test.rotation.z);
 
 
         //Setting Up the direction of FADE WILL BE FIXED
