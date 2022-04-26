@@ -13,6 +13,8 @@ public class FirstPersonController : MonoBehaviour
     public GameObject animator;
     public Slider leftStaminaSlider;
     public Slider rightStaminaSlider;
+    public GameObject leftMouseButton;
+    public GameObject rightMouseButton;
 
     // Variables that need adjusting
     public float movementSpeed = 10;
@@ -30,7 +32,7 @@ public class FirstPersonController : MonoBehaviour
 
     // Variables that need accessing
     public float xSpeed, ySpeed, zSpeed;
-    public bool isGrounded, isSprinting, isMovingOnGround, pressedCrouch, holdingWood;
+    public bool isGrounded, isSprinting, isMovingOnGround, pressedCrouch, holdingWood, isHolding;
 
     // Private Variables
     private float mouseX, mouseY, stepOffset, speedMultiplier, stamina, staminaCooldown;
@@ -57,6 +59,10 @@ public class FirstPersonController : MonoBehaviour
         stamina = staminaMax;
         leftStaminaSlider.maxValue = staminaMax;
         rightStaminaSlider.maxValue = staminaMax;
+
+        // Sets mouse control images
+        leftMouseButton = GameObject.Find("MouseLeftClick");
+        rightMouseButton = GameObject.Find("MouseRightClick");
     }
 
     // Update is called once per frame
@@ -115,6 +121,7 @@ public class FirstPersonController : MonoBehaviour
         {
             isSprinting = false;
         }
+        MouseControls();
         DebugMenu();
     }
     void Movement()
@@ -293,5 +300,26 @@ public class FirstPersonController : MonoBehaviour
         // Updates the sliders to show sprint level
         leftStaminaSlider.value = stamina;
         rightStaminaSlider.value = stamina;
+    }
+
+    private void MouseControls()
+    {
+        if (isHolding == true || holdingWood == true)
+        {
+            leftMouseButton.SetActive(true);
+        }
+        else
+        {
+            leftMouseButton.SetActive(false);
+        }
+
+        if (isHolding == true)
+        {
+            rightMouseButton.SetActive(true);
+        }
+        else
+        {
+            rightMouseButton.SetActive(false);
+        }
     }
 }
