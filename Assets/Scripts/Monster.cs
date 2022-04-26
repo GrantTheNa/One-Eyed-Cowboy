@@ -70,7 +70,10 @@ public class Monster : MonoBehaviour
             [m_CurrentWaypointIndex].position);
 
     }
-        // Update is called once per frame
+
+
+
+    // Update is called once per frame
     void Update()
     {
         EnvironmentView(); 
