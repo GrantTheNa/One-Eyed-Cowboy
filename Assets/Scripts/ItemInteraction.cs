@@ -8,6 +8,7 @@ public class ItemInteraction : MonoBehaviour
     public GameObject item;
     public GameObject playerCamera;
     private string originalTag;
+    public FirstPersonController fpsController;
 
     // Variables that need adjusting
     public float grabDistance = 2;
@@ -15,7 +16,7 @@ public class ItemInteraction : MonoBehaviour
 
     // Private variables
     private Vector3 objectPos;
-    private bool highlighted, isHolding;
+    [SerializeField] private bool highlighted, isHolding;
     private float timer, tagTimer;
 
 
@@ -24,6 +25,7 @@ public class ItemInteraction : MonoBehaviour
         // Assigning Variables
         playerCamera = GameObject.Find("First Person Camera");
         originalTag = item.tag;
+        fpsController = FindObjectOfType<FirstPersonController>();
     }
     public void Update()
     {
@@ -64,12 +66,15 @@ public class ItemInteraction : MonoBehaviour
         if (isHolding == true && Input.GetMouseButtonDown(0) == true || timer == 0)
         {
             isHolding = false;
+            fpsController.isHolding = false;
+            timer = 999999999;
         }
         // Checks for throwing object
         else if (isHolding == true && Input.GetMouseButtonDown(1) == true)
         {
             item.GetComponent<Rigidbody>().AddForce(playerCamera.transform.forward * throwForce);
             isHolding = false;
+            fpsController.isHolding = false;
             item.tag = "Thrown";
             tagTimer = 3;
         }
@@ -77,6 +82,7 @@ public class ItemInteraction : MonoBehaviour
         else if (highlighted == true && Input.GetMouseButtonDown(0) == true)
         {
             isHolding = true;
+            fpsController.isHolding = true;
             item.tag = originalTag;
         }
         // Reduces timer for reseting tag
@@ -97,6 +103,7 @@ public class ItemInteraction : MonoBehaviour
             item.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
             item.transform.SetParent(playerCamera.transform);
             item.GetComponent<Rigidbody>().useGravity = false;
+
         }
 
         // Code when no longer holding object
