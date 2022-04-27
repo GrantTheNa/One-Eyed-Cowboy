@@ -13,7 +13,7 @@ public class FeetCollider : MonoBehaviour
     // This script will detect if the player is grounded or not by using a mesh collider cylinder below the player.
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag != "Player" && other.tag != "Trigger")
+        if(other.tag != "Player" && other.tag != "Trigger" && other.tag != "Enemy")
         {
             isGrounded = true;
         }
@@ -24,7 +24,7 @@ public class FeetCollider : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag != "Player" && other.tag != "Trigger")
+        if (other.tag != "Player" && other.tag != "Trigger" && other.tag != "Enemy")
         {
             isGrounded = true;
         }
@@ -35,7 +35,7 @@ public class FeetCollider : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag != "Player" && other.tag != "Trigger")
+        if (other.tag != "Player" && other.tag != "Trigger" && other.tag != "Enemy")
         {
             isGrounded = false;
         }
